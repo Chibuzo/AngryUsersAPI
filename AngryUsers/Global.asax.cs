@@ -15,6 +15,9 @@ namespace AngryUsers
         {
             AreaRegistration.RegisterAllAreas();
             GlobalConfiguration.Configure(WebApiConfig.Register);
+            GlobalConfiguration.Configuration.Formatters
+                   .JsonFormatter.SerializerSettings.Re‌​ferenceLoopHandling
+                   = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
