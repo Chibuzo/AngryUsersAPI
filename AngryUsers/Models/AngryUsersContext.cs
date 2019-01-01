@@ -27,5 +27,7 @@ namespace AngryUsers.Models
         public System.Data.Entity.DbSet<AngryUsers.Models.Company> Companies { get; set; }
 
         public System.Data.Entity.DbSet<AngryUsers.Models.Comment> Comments { get; set; }
+
+        public System.Data.Entity.DbSet<AngryUsers.Models.ComplaintFile> ComplaintFiles { get; set; }
     }
 }

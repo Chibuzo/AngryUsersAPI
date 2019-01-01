@@ -7,6 +7,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
+using System.Web.Hosting;
 using System.Web.Http;
 using System.Web.Http.Description;
 using AngryUsers.Models;
@@ -20,7 +21,7 @@ namespace AngryUsers.Controllers
         // GET: api/Complaints
         public IQueryable<Complaint> GetComplaints()
         {
-            return db.Complaints; //.OrderByDescending(c => c.CreatedAt);
+            return db.Complaints.OrderByDescending(c => c.CreatedAt);
         }
 
         // GET: api/Complaints/5
@@ -108,17 +109,30 @@ namespace AngryUsers.Controllers
                 complaint.CompanyId = company.Id;
             }
 
-            db.Complaints.Add(new Complaint()
+            //// lets look for files
+            //if (!Request.Content.IsMimeMultipartContent())
+            //    throw new HttpResponseException(HttpStatusCode.UnsupportedMediaType);
+
+            //var provider = new MultipartFormDataStreamProvider(HostingEnvironment.MapPath("~/App_Data"));
+            //var files = await Request.Content.ReadAsMultipartAsync(provider);
+            //System.Diagnostics.Debug.WriteLine(files);
+
+            Complaint newComplaint = new Complaint()
             {
                 Title = complaint.Title,
                 Issue = complaint.Issue,
                 IssueDate = complaint.IssueDate,
                 CompanyId = complaint.CompanyId,
-                UserId = complaint.UserId
-            });
+                FacebookShare = complaint.FacebookShare,
+                TwitterShare = complaint.TwitterShare,
+                UserId = complaint.UserId,
+                CreatedAt = DateTime.Now
+            };
+            db.Complaints.Add(newComplaint);
             await db.SaveChangesAsync();
 
-            return StatusCode(HttpStatusCode.Created);
+            //return StatusCode(HttpStatusCode.Created);
+            return Json(new { Success = true, newComplaint.Id });
         }
 
         // DELETE: api/Complaints/5

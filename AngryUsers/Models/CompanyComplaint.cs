@@ -7,11 +7,17 @@ namespace AngryUsers.Models
 {
     public class CompanyComplaint
     {
+        public int Id { get; set; }
+
         public string Title { get; set; }
         
         public string Issue { get; set; }
         
         public DateTime IssueDate { get; set; }
+
+        public Boolean FacebookShare { get; set; }
+        public Boolean TwitterShare { get; set; }
+        public DateTime CreatedAt { get; set; }
 
         public int CompanyId { get; set; }
 

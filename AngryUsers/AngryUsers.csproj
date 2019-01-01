@@ -194,6 +194,7 @@
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Controllers\CommentsController.cs" />
     <Compile Include="Controllers\CompaniesController.cs" />
+    <Compile Include="Controllers\ComplaintFilesController.cs" />
     <Compile Include="Controllers\ComplaintsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
@@ -201,25 +202,13 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201809291709155_InitialCreate.cs" />
-    <Compile Include="Migrations\201809291709155_InitialCreate.Designer.cs">
-      <DependentUpon>201809291709155_InitialCreate.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201810012323256_AddcomplaintTitle.cs" />
-    <Compile Include="Migrations\201810012323256_AddcomplaintTitle.Designer.cs">
-      <DependentUpon>201810012323256_AddcomplaintTitle.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201810110955049_AddCommentTable.cs" />
-    <Compile Include="Migrations\201810110955049_AddCommentTable.Designer.cs">
-      <DependentUpon>201810110955049_AddCommentTable.cs</DependentUpon>
-    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AngryUsersContext.cs" />
     <Compile Include="Models\Comment.cs" />
     <Compile Include="Models\Company.cs" />
     <Compile Include="Models\CompanyComplaint.cs" />
     <Compile Include="Models\Complaint.cs" />
-    <Compile Include="Models\EntityBase.cs" />
+    <Compile Include="Models\ComplaintFile.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -317,22 +306,12 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="ComplaintFiles\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-3.3.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.3.1.min.map" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\201809291709155_InitialCreate.resx">
-      <DependentUpon>201809291709155_InitialCreate.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201810012323256_AddcomplaintTitle.resx">
-      <DependentUpon>201810012323256_AddcomplaintTitle.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201810110955049_AddCommentTable.resx">
-      <DependentUpon>201810110955049_AddCommentTable.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <TypeScriptCompile Include="Scripts\index.d.ts" />
