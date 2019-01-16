@@ -36,6 +36,26 @@ namespace AngryUsers.Controllers
             return Ok(user);
         }
 
+        // POST: api/Users/FindOrCreate
+        [Route("api/Users/FindOrCreate")]
+        [HttpPost]
+        public async Task<IHttpActionResult> FindOrCreate(User user)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            User currentUser = await db.Users.FirstOrDefaultAsync(u => u.Email == user.Email);
+            if (currentUser == null || currentUser == default(User))
+            {
+                db.Users.Add(user);
+                await db.SaveChangesAsync();
+            }
+            return Json(new { Success = true, user.Id });
+        }
+
+
         // PUT: api/Users/5
         [ResponseType(typeof(void))]
         public async Task<IHttpActionResult> PutUser(int id, User user)

@@ -30,14 +30,30 @@ namespace AngryUsers.Controllers
         public HttpResponseMessage UploadFiles()
         {
             var httpRequest = HttpContext.Current.Request;
+            int complaintId = Int32.Parse(httpRequest.Params["ComplaintId"]);
             if (httpRequest.Files.Count > 0)
             {
                 foreach (string filename in httpRequest.Files.Keys)
                 {
                     var file = httpRequest.Files[filename];
-                    var file_name = Guid.NewGuid().ToString() + System.IO.Path.GetExtension(file.FileName);
-                    var filePart = HttpContext.Current.Server.MapPath("~/ComplaintFiles/cp_" + file_name);
+                    var file_name = "cp_" + Guid.NewGuid().ToString() + System.IO.Path.GetExtension(file.FileName);
+                    var filePart = HttpContext.Current.Server.MapPath("~/ComplaintFiles/" + file_name);
                     file.SaveAs(filePart);
+
+                    // insert into database
+                    if (!ModelState.IsValid)
+                    {
+                        return Request.CreateResponse(HttpStatusCode.BadRequest);
+                    }
+
+                    db.ComplaintFiles.Add(new ComplaintFile()
+                    {
+                        Filename = file_name,
+                        ComplaintId = complaintId,
+                        CreatedAt = DateTime.Now,
+                        UpdatedAt = DateTime.Now                       
+                    });
+                    db.SaveChanges();
                 }
                 return Request.CreateResponse(HttpStatusCode.Created);
             }

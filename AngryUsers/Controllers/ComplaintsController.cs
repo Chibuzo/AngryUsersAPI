@@ -21,18 +21,27 @@ namespace AngryUsers.Controllers
         // GET: api/Complaints
         public IQueryable<Complaint> GetComplaints()
         {
-            return db.Complaints.OrderByDescending(c => c.CreatedAt);
+            return db.Complaints
+                .Include(coy => coy.Company)
+                .Include(com => com.Comments)
+                .Include(f => f.ComplaintFiles)
+                .OrderByDescending(c => c.CreatedAt);
         }
 
         // GET: api/Complaints/5
         [ResponseType(typeof(Complaint))]
         public async Task<IHttpActionResult> GetComplaint(int id)
         {
-            Complaint complaint = await db.Complaints.FindAsync(id);
-            if (complaint == null)
+            Complaint complaint = await db.Complaints.Include(c => c.Comments).FirstOrDefaultAsync(i => i.Id == id);
+            if (complaint == null || complaint == default(Complaint))
             {
                 return NotFound();
             }
+
+            // increment view count
+            complaint.ViewCount++;
+            db.Entry(complaint).State = EntityState.Modified;
+            await db.SaveChangesAsync();
 
             return Ok(complaint);
         }
@@ -92,10 +101,10 @@ namespace AngryUsers.Controllers
         [HttpPost]
         public async Task<IHttpActionResult> SaveComplaint(CompanyComplaint complaint)
         {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
+                if (!ModelState.IsValid)
+                {
+                    return BadRequest(ModelState);
+                }
 
             if (complaint.CompanyId == 0)
             {
