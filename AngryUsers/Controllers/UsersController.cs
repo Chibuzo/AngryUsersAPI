@@ -52,7 +52,8 @@ namespace AngryUsers.Controllers
                 db.Users.Add(user);
                 await db.SaveChangesAsync();
             }
-            return Json(new { Success = true, user.Id });
+
+            return Json(new { Success = true, Id = currentUser != null && currentUser.Id > 0 ? currentUser.Id : user.Id });
         }
 
 

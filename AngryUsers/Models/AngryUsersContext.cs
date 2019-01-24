@@ -19,8 +19,9 @@ namespace AngryUsers.Models
 
         public AngryUsersContext() : base("name=AngryUsersContext")
         {
+            Database.SetInitializer(new DropCreateDatabaseAlways<AngryUsersContext>());
             Database.SetInitializer(new MigrateDatabaseToLatestVersion<AngryUsersContext, AngryUsers.Migrations.Configuration>());
-            Configuration.LazyLoadingEnabled = false;
+            //Configuration.LazyLoadingEnabled = false;
         }
 
         public System.Data.Entity.DbSet<AngryUsers.Models.Complaint> Complaints { get; set; }

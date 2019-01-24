@@ -23,7 +23,8 @@ namespace AngryUsers.Controllers
         {
             return db.Complaints
                 .Include(coy => coy.Company)
-                .Include(com => com.Comments)
+                .Include(com => com.Comments.Select(u => u.User))
+                .Include(u => u.User)
                 .Include(f => f.ComplaintFiles)
                 .OrderByDescending(c => c.CreatedAt);
         }
@@ -32,7 +33,11 @@ namespace AngryUsers.Controllers
         [ResponseType(typeof(Complaint))]
         public async Task<IHttpActionResult> GetComplaint(int id)
         {
-            Complaint complaint = await db.Complaints.Include(c => c.Comments).FirstOrDefaultAsync(i => i.Id == id);
+            Complaint complaint = await db.Complaints
+                .Include(coy => coy.Company)
+                .Include(c => c.Comments.Select(u => u.User))
+                .Include(u => u.User).FirstOrDefaultAsync(i => i.Id == id);
+
             if (complaint == null || complaint == default(Complaint))
             {
                 return NotFound();
