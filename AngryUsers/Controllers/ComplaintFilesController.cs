@@ -18,12 +18,6 @@ namespace AngryUsers.Controllers
     {
         private AngryUsersContext db = new AngryUsersContext();
 
-        // GET: api/ComplaintFiles
-        public IQueryable<ComplaintFile> GetComplaintFiles()
-        {
-            return db.ComplaintFiles;
-        }
-
         // POST: api/ComplaintFiles/uploadFiles
         [Route("api/ComplaintFiles/uploadFiles")]
         [HttpPost]

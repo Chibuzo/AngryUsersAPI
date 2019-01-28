@@ -19,9 +19,9 @@ namespace AngryUsers.Models
 
         public AngryUsersContext() : base("name=AngryUsersContext")
         {
-            Database.SetInitializer(new DropCreateDatabaseAlways<AngryUsersContext>());
+            //Database.SetInitializer(new DropCreateDatabaseAlways<AngryUsersContext>());
             Database.SetInitializer(new MigrateDatabaseToLatestVersion<AngryUsersContext, AngryUsers.Migrations.Configuration>());
-            //Configuration.LazyLoadingEnabled = false;
+            Configuration.LazyLoadingEnabled = false;
         }
 
         public System.Data.Entity.DbSet<AngryUsers.Models.Complaint> Complaints { get; set; }
@@ -33,5 +33,11 @@ namespace AngryUsers.Models
         public System.Data.Entity.DbSet<AngryUsers.Models.Comment> Comments { get; set; }
 
         public System.Data.Entity.DbSet<AngryUsers.Models.ComplaintFile> ComplaintFiles { get; set; }
+
+        public System.Data.Entity.DbSet<AngryUsers.Models.BlogCategory> BlogCategories { get; set; }
+
+        public System.Data.Entity.DbSet<AngryUsers.Models.BlogPost> BlogPosts { get; set; }
+
+        public System.Data.Entity.DbSet<AngryUsers.Models.BlogPhoto> BlogPhotos { get; set; }
     }
 }
