@@ -13,7 +13,7 @@ namespace AngryUsers
             // Web API configuration and services
 
             // Cors
-            var cors = new EnableCorsAttribute("*", "*", "POST, GET"); // origins, headers, methods
+            var cors = new EnableCorsAttribute("*", "*","POST, GET, PUT, DELETE"); // origins, headers, methods
             config.EnableCors(cors);
 
             // Web API routes

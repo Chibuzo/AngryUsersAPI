@@ -39,5 +39,7 @@ namespace AngryUsers.Models
         public System.Data.Entity.DbSet<AngryUsers.Models.BlogPost> BlogPosts { get; set; }
 
         public System.Data.Entity.DbSet<AngryUsers.Models.BlogPhoto> BlogPhotos { get; set; }
+
+        public System.Data.Entity.DbSet<AngryUsers.Models.CompanyReview> CompanyReviews { get; set; }
     }
 }

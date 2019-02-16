@@ -77,7 +77,7 @@ namespace AngryUsers.Controllers
                 }
             }
 
-            return StatusCode(HttpStatusCode.NoContent);
+            return Json(new { Success = true, BlogPost.Id, BlogPost.Title });
         }
 
         // POST: api/BlogPosts
