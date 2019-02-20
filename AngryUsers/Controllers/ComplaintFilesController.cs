@@ -11,6 +11,7 @@ using System.Web;
 using System.Web.Http;
 using System.Web.Http.Description;
 using AngryUsers.Models;
+using AngryUsers.Services;
 
 namespace AngryUsers.Controllers
 {
@@ -52,6 +53,33 @@ namespace AngryUsers.Controllers
                 return Request.CreateResponse(HttpStatusCode.Created);
             }
             return Request.CreateResponse(HttpStatusCode.BadRequest);
+        }
+
+
+        [Route("api/ComplaintFiles/SaveUploadedFiles")]
+        [HttpPost]
+        public void SaveUploadedFiles(IEnumerable<ComplaintFile> files)
+        {
+            foreach (ComplaintFile file in files)
+            {
+                db.ComplaintFiles.Add(new ComplaintFile()
+                {
+                    Filename = file.Filename,
+                    ComplaintId = file.ComplaintId,
+                    CreatedAt = DateTime.Now,
+                    UpdatedAt = DateTime.Now
+                });
+            }
+            db.SaveChanges();
+        }
+
+        [Route("api/ComplaintFiles/SignRequests")]
+        [HttpPost]
+        public IEnumerable<S3FileObject> SignRequests(IEnumerable<S3FileObject> FileObjs)
+        {
+            AWSServices aws = new AWSServices();
+            IEnumerable<S3FileObject> SignedUrls = aws.SignUrl(FileObjs);
+            return SignedUrls;
         }
 
         // GET: api/ComplaintFiles/5

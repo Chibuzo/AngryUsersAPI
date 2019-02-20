@@ -36,6 +36,7 @@ namespace AngryUsers.Controllers
             Complaint complaint = await db.Complaints
                 .Include(coy => coy.Company)
                 .Include(c => c.Comments.Select(u => u.User))
+                .Include(f => f.ComplaintFiles)
                 .Include(u => u.User).FirstOrDefaultAsync(i => i.Id == id);
 
             if (complaint == null || complaint == default(Complaint))
@@ -122,14 +123,6 @@ namespace AngryUsers.Controllers
                 await db.SaveChangesAsync();
                 complaint.CompanyId = company.Id;
             }
-
-            //// lets look for files
-            //if (!Request.Content.IsMimeMultipartContent())
-            //    throw new HttpResponseException(HttpStatusCode.UnsupportedMediaType);
-
-            //var provider = new MultipartFormDataStreamProvider(HostingEnvironment.MapPath("~/App_Data"));
-            //var files = await Request.Content.ReadAsMultipartAsync(provider);
-            //System.Diagnostics.Debug.WriteLine(files);
 
             Complaint newComplaint = new Complaint()
             {
