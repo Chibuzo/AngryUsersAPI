@@ -49,6 +49,7 @@ namespace AngryUsers.Controllers
             User currentUser = await db.Users.FirstOrDefaultAsync(u => u.Email == user.Email);
             if (currentUser == null || currentUser == default(User))
             {
+                user.CreatedAt = DateTime.Now;
                 db.Users.Add(user);
                 await db.SaveChangesAsync();
             }

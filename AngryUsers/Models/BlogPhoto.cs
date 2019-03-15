@@ -8,7 +8,7 @@ namespace AngryUsers.Models
     {
         public int Id { get; set; }
         [Required]
-        public string PhotoName { get; set; }
+        public string PhotoSrc { get; set; }
         public int BlogPostId { get; set; }
         public DateTime CreatedAt { get; set; }
     }

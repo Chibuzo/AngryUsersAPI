@@ -16,6 +16,7 @@ namespace AngryUsers.Models
         public int ViewCount { get; set; }
         public Boolean FacebookShare { get; set; }
         public Boolean TwitterShare { get; set; }
+        public Boolean Anonymous { get; set; }
         public DateTime CreatedAt { get; set; }
 
         public int CompanyId { get; set; }

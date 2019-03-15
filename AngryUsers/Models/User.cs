@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace AngryUsers.Models
@@ -10,6 +11,7 @@ namespace AngryUsers.Models
         public string Email { get; set; }
         public string Fullname { get; set; }
         public string Photo_url { get; set; }
+        public DateTime CreatedAt { get; set; }
 
         public virtual ICollection<Complaint> Complaints { get; set; }
     }

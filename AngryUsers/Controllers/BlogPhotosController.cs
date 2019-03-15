@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
@@ -34,17 +35,33 @@ namespace AngryUsers.Controllers
                         return Request.CreateResponse(HttpStatusCode.BadRequest);
                     }
 
-                    db.BlogPhotos.Add(new BlogPhoto()
-                    {
-                        PhotoName = file_name,
-                        BlogPostId = postId,
-                        CreatedAt = DateTime.Now,
-                    });
-                    db.SaveChanges();
+                    //db.BlogPhotos.Add(new BlogPhoto()
+                    //{
+                    //    PhotoName = file_name,
+                    //    BlogPostId = postId,
+                    //    CreatedAt = DateTime.Now,
+                    //});
+                    //db.SaveChanges();
                 }
                 return Request.CreateResponse(HttpStatusCode.Created);
             }
             return Request.CreateResponse(HttpStatusCode.BadRequest);
+        }
+
+        [Route("api/BlogPhotos/SaveUploadedFiles")]
+        [HttpPost]
+        public void SaveUploadedFiles(IEnumerable<BlogPhoto> files)
+        {
+            foreach (BlogPhoto file in files)
+            {
+                db.BlogPhotos.Add(new BlogPhoto()
+                {
+                    PhotoSrc = file.PhotoSrc,
+                    BlogPostId = file.BlogPostId,
+                    CreatedAt = DateTime.Now,
+                });
+            }
+            db.SaveChanges();
         }
     }
 }

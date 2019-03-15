@@ -21,7 +21,7 @@ namespace AngryUsers.Controllers
         // GET: api/BlogPosts
         public IQueryable<BlogPost> GetBlogPosts()
         {
-            return db.BlogPosts.Include(c => c.Category).OrderByDescending(d => d.CreatedAt);
+            return db.BlogPosts.Include(c => c.Category).Include(p => p.Photos).OrderByDescending(d => d.CreatedAt);
         }
 
         // GET: api/BlogPosts/FetchRecent

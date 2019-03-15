@@ -23,7 +23,7 @@ namespace AngryUsers.Controllers
         {
             return db.Complaints
                 .Include(coy => coy.Company)
-                .Include(com => com.Comments.Select(u => u.User))
+                //.Include(com => com.Comments.Select(u => u.User))
                 .Include(u => u.User)
                 .Include(f => f.ComplaintFiles)
                 .OrderByDescending(c => c.CreatedAt);
@@ -35,9 +35,10 @@ namespace AngryUsers.Controllers
         {
             Complaint complaint = await db.Complaints
                 .Include(coy => coy.Company)
-                .Include(c => c.Comments.Select(u => u.User))
+                //.Include(c => c.Comments.Select(u => u.User))
                 .Include(f => f.ComplaintFiles)
-                .Include(u => u.User).FirstOrDefaultAsync(i => i.Id == id);
+                .Include(u => u.User)
+                .FirstOrDefaultAsync(i => i.Id == id);
 
             if (complaint == null || complaint == default(Complaint))
             {
@@ -132,6 +133,7 @@ namespace AngryUsers.Controllers
                 CompanyId = complaint.CompanyId,
                 FacebookShare = complaint.FacebookShare,
                 TwitterShare = complaint.TwitterShare,
+                Anonymous = complaint.Anonymous,
                 UserId = complaint.UserId,
                 CreatedAt = DateTime.Now
             };
