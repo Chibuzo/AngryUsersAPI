@@ -59,6 +59,7 @@ namespace AngryUsers.Controllers
                             new {
                                     b.Title,
                                     b.Id,
+                                    b.Article,
                                     b.CreatedAt
                             })
                 });
