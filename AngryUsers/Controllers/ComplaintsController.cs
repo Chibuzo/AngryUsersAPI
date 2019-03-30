@@ -134,13 +134,13 @@ namespace AngryUsers.Controllers
                 FacebookShare = complaint.FacebookShare,
                 TwitterShare = complaint.TwitterShare,
                 Anonymous = complaint.Anonymous,
+                Notify = complaint.Notify,
                 UserId = complaint.UserId,
                 CreatedAt = DateTime.Now
             };
             db.Complaints.Add(newComplaint);
             await db.SaveChangesAsync();
 
-            //return StatusCode(HttpStatusCode.Created);
             return Json(new { Success = true, newComplaint.Id });
         }
 

@@ -9,6 +9,7 @@ namespace AngryUsers.Models
         public int Id { get; set; }
         [Required]
         public string Body { get; set; }
+        public Boolean Notify { get; set; }
         public DateTime DatePosted { get; set; }
 
         [Required]

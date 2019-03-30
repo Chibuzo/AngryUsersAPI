@@ -262,6 +262,8 @@
     <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\AWSServices.cs" />
+    <Compile Include="Services\Email.cs" />
+    <Compile Include="Services\NotifyEmail.cs" />
     <Compile Include="Services\S3FileObject.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -364,6 +366,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="BlogPhotos\" />
+    <Folder Include="EmailTemplates\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
