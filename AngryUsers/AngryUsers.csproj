@@ -239,6 +239,7 @@
     <Compile Include="Controllers\BlogPostsController.cs" />
     <Compile Include="Controllers\CommentsController.cs" />
     <Compile Include="Controllers\CompaniesController.cs" />
+    <Compile Include="Controllers\CompanyRequestsController.cs" />
     <Compile Include="Controllers\CompanyReviewsController.cs" />
     <Compile Include="Controllers\ComplaintFilesController.cs" />
     <Compile Include="Controllers\ComplaintsController.cs" />
@@ -255,6 +256,7 @@
     <Compile Include="Models\Comment.cs" />
     <Compile Include="Models\Company.cs" />
     <Compile Include="Models\CompanyComplaint.cs" />
+    <Compile Include="Models\CompanyRequest.cs" />
     <Compile Include="Models\CompanyReview.cs" />
     <Compile Include="Models\Complaint.cs" />
     <Compile Include="Models\ComplaintFile.cs" />
