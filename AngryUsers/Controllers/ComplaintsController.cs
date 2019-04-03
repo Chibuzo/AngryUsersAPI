@@ -108,10 +108,10 @@ namespace AngryUsers.Controllers
         [HttpPost]
         public async Task<IHttpActionResult> SaveComplaint(CompanyComplaint complaint)
         {
-                if (!ModelState.IsValid)
-                {
-                    return BadRequest(ModelState);
-                }
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
 
             if (complaint.CompanyId == 0)
             {
