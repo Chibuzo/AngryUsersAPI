@@ -41,5 +41,7 @@ namespace AngryUsers.Models
         public System.Data.Entity.DbSet<AngryUsers.Models.BlogPhoto> BlogPhotos { get; set; }
 
         public System.Data.Entity.DbSet<AngryUsers.Models.CompanyReview> CompanyReviews { get; set; }
+
+        public System.Data.Entity.DbSet<AngryUsers.Models.ComplaintFlag> ComplaintFlags { get; set; }
     }
 }
