@@ -33,6 +33,7 @@ namespace AngryUsers.Controllers
                 return BadRequest(ModelState);
             }
 
+            category.CreatedAt = DateTime.Now;
             db.BlogCategories.Add(category);
             await db.SaveChangesAsync();
 
@@ -49,19 +50,22 @@ namespace AngryUsers.Controllers
         }
 
         // GET: api/BlogCategories/getCategories
-        [Route("api/BlogCategories/getPosts/{category}")]
-        public IHttpActionResult GetCategoryPosts(string category)
+        [Route("api/BlogCategories/getPosts/{category}/{limit:int?}")]
+        public IHttpActionResult GetCategoryPosts(string category, int limit = 1)
         {
-            var blogCategory = db.BlogCategories.Where(c => c.CategoryTitle == category).Select(p => 
-                new {
-                        category = p.CategoryTitle,
-                        posts = p.Posts.Select(b => 
-                            new {
-                                    b.Title,
-                                    b.Id,
-                                    b.Article,
-                                    b.CreatedAt
-                            })
+            var blogCategory = db.BlogCategories.Where(c => c.CategoryTitle == category).Select(p =>
+                new
+                {
+                    category = p.CategoryTitle,
+                    posts = p.Posts.Select(b =>
+                        new
+                        {
+                            b.Title,
+                            b.Id,
+                            b.Article,
+                            b.CreatedAt,
+                            b.Photos
+                        })
                 });
             return Ok(blogCategory);
         }
