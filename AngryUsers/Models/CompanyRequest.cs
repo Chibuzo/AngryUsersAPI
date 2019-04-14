@@ -12,6 +12,7 @@ namespace AngryUsers.Models
         public string ContactPhone { get; set; }
         [Required]
         public string ContactEmail { get; set; }
+        [Required]
         public string CompanyName { get; set; }
         [Required]
         public int CompanyId { get; set; }

@@ -42,10 +42,8 @@ namespace AngryUsers.Models
 
         public System.Data.Entity.DbSet<AngryUsers.Models.CompanyReview> CompanyReviews { get; set; }
 
-<<<<<<< HEAD
         public System.Data.Entity.DbSet<AngryUsers.Models.ComplaintFlag> ComplaintFlags { get; set; }
-=======
+
         public System.Data.Entity.DbSet<AngryUsers.Models.CompanyRequest> CompanyRequests { get; set; }
->>>>>>> company-side
     }
 }
