@@ -13,6 +13,7 @@ namespace AngryUsers.Models
         public string Issue { get; set; }
         [Required]
         public DateTime IssueDate { get; set; }
+        public string Tags { get; set; }
         public int ViewCount { get; set; }
         public Boolean FacebookShare { get; set; }
         public Boolean TwitterShare { get; set; }

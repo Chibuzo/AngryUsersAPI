@@ -29,6 +29,19 @@ namespace AngryUsers.Controllers
                 .OrderByDescending(c => c.CreatedAt);
         }
 
+        // GET: api/Complaints
+        [Route("api/Complaints/getComplaintsByTag/{tag}")]
+        [HttpGet]
+        public IQueryable<Complaint> GetComplaintsByTag(string tag)
+        {
+            return db.Complaints.Where(c => c.Tags.Contains(tag))
+                .Include(coy => coy.Company)
+                .Include(com => com.Comments.Select(u => u.User))
+                .Include(u => u.User)
+                .Include(f => f.ComplaintFiles)
+                .OrderByDescending(c => c.CreatedAt);
+        }
+
         // GET: api/Complaints/5
         [ResponseType(typeof(Complaint))]
         public async Task<IHttpActionResult> GetComplaint(int id)
@@ -131,6 +144,7 @@ namespace AngryUsers.Controllers
                 Issue = complaint.Issue,
                 IssueDate = complaint.IssueDate,
                 CompanyId = complaint.CompanyId,
+                Tags = complaint.Tags,
                 FacebookShare = complaint.FacebookShare,
                 TwitterShare = complaint.TwitterShare,
                 Anonymous = complaint.Anonymous,

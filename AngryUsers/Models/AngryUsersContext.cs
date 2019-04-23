@@ -45,5 +45,7 @@ namespace AngryUsers.Models
         public System.Data.Entity.DbSet<AngryUsers.Models.ComplaintFlag> ComplaintFlags { get; set; }
 
         public System.Data.Entity.DbSet<AngryUsers.Models.CompanyRequest> CompanyRequests { get; set; }
+
+        public System.Data.Entity.DbSet<AngryUsers.Models.ComplaintTag> ComplaintTags { get; set; }
     }
 }
